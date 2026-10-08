@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>工业运维 AI Agent 工作台</title>
+<meta name="description" content="把 Agent 落进生产流程：打通 AI 助手、ERP 工单与钉钉审批三系统链路的工程实现。">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">工业运维 AI Agent 工作台</a>
+    <nav class="nav-links">
+      <a href="#position">定位</a>
+      <a href="#features">功能</a>
+      <a href="#metrics">实测数据</a>
+      <a href="#stack">技术栈</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero wrap">
+    <p class="tag">落地验证形态</p>
+    <h1>把 Agent 落进生产流程</h1>
+    <p class="lead">
+      企业评估 AI 只看两件事：能不能提效、能不能比现在便宜。项目以工厂设备运维为首个场景，
+      打通「AI 助手 · ERP 工单 · 钉钉审批」三系统链路——排故、查件、提单、审批、受理，一次对话走完。
+    </p>
+    <ul class="stats">
+      <li><b>1398</b><span>可核验 chunk</span></li>
+      <li><b>0.852</b><span>Recall@5 基线</span></li>
+      <li><b>60</b><span>条黄金评测集</span></li>
+      <li><b>3</b><span>个系统打通</span></li>
+    </ul>
+  </section>
+
+  <!-- 01 定位 -->
+  <section class="sec wrap" id="position">
+    <div class="sec-head">
+      <span class="idx">01</span>
+      <h2>定位</h2>
+    </div>
+    <div class="sec-body">
+      <p>
+        设备报故障时，现场要经历：翻手册判断故障码含义、到 ERP 查这台设备的台账号、问仓库备件有没有货、
+        填一张维修工单、再找人走审批。四步以上人工切换，跨三个系统，信息散在不同人手里。
+      </p>
+      <p>
+        项目把这条链路收进一次对话：Agent 自己决定查手册还是查库存、自己组装工单草稿，
+        关键动作交回人工确认，审批走企业既有的钉钉流程，通过后自动落到 ERP 受理。
+        不新建系统、不改企业流程，是往已有系统上接。
+      </p>
+      <p class="flow">手册排故 → 定位台账 → 核对备件 → 起草工单 → 钉钉审批 → ERP 受理</p>
+      <p class="muted">原本 3 个系统、4 步以上人工操作；现在 1 次对话，人工只做确认与同意。</p>
+    </div>
+  </section>
+
+  <!-- 02 功能 -->
+  <section class="sec wrap" id="features">
+    <div class="sec-head">
+      <span class="idx">02</span>
+      <h2>功能</h2>
+    </div>
+    <div class="sec-body">
+      <p class="muted">九块内容，每块一个问题、一段做法、几行可核验的细节。</p>
+
+      <article class="feat">
+        <div class="feat-text">
+          <h3><span class="idx">F1</span>RAG 语料工程</h3>
+          <p>
+            表格嵌套图片、表格嵌套表格、图文交错——这些版式用固定长度切分会把参数表切碎，
+            检索出来答非所问。做法是按四类形态分别定制结构化切分口径，全程 Markdown 正文，
+            图片裁切后嵌入 OSS，并做字符级原文核对与数量对账。
+          </p>
+          <ul class="facts">
+            <li>交付 1398 个 chunk：参数 1207 · 警告 91 · 故障 100</li>
+            <li>四类形态：带图 57 · 嵌套表格 86 · 嵌套带图 2 · 普通 1062</li>
+            <li>950 条参数 ⇄ 故障交叉引用，供检索层做展开</li>
+          </ul>
+        </div>
+        <figure class="shot">
+          <img src="assets/shots/01-corpus.png" alt="手册原始版式与结构化 chunk 的对照" loading="lazy" width="1600" height="1000">
+          <div class="ph"><b>01</b><span>手册原页与结构化 chunk 对照</span><code>assets/shots/01-corpus.png</code></div>
+        </figure>
+      </article>
+
+      <article class="feat">
+        <div class="feat-text">
+          <h3><span class="idx">F2</span>检索层</h3>
+          <p>
+            现场工人问的是大白话：「一减速就报过压」。精确工具按「编号 → 参数组前缀 → 名称 → 模糊」
+            四级回退，语义工具走向量召回；两个工具返回同构载荷、正文不裁剪，选哪条路交给 Agent。
+            交叉引用把两者串成闭环：查到故障，展开它引用的参数。
+          </p>
+          <ul class="facts">
+            <li>bge-m3 1024 维 · HNSW 余弦索引 · 共 4 个索引</li>
+            <li>单次检索 P50 ≈ 1.05s（embedding 725ms + 库内 330ms）</li>
+            <li>只命中场景绑定的知识库，实测跨库查询为空</li>
+          </ul>
+        </div>
+        <figure class="shot">
+          <img src="assets/shots/02-retrieval.png" alt="检索过程与命中结果" loading="lazy" width="1600" height="1000">
+          <div class="ph"><b>02</b><span>检索过程与命中结果</span><code>assets/shots/02-retrieval.png</code></div>
+        </figure>
+      </article>
+
+      <article class="feat">
+        <div class="feat-text">
+          <h3><span class="idx">F3</span>引用溯源</h3>
+          <p>
+            回答里引用检索结果的事实（参数值、故障原因、措施）时标注来源编号，编号按本轮命中顺序递增，
+            多路检索合并编号。hover 看摘要，点开看来源列表——回答有依据，才谈得上敢用。
+          </p>
+          <ul class="facts">
+            <li>检索层不裁剪正文，只在最终拼 prompt 处统一处理</li>
+            <li>没有检索依据的内容不标注编号，也不编造编号</li>
+          </ul>
+        </div>
+        <figure class="shot">
+          <img src="assets/shots/03-citations.png" alt="引用上标与来源预览" loading="lazy" width="1600" height="1000">
+          <div class="ph"><b>03</b><span>引用上标与来源预览</span><code>assets/shots/03-citations.png</code></div>
+        </figure>
+      </article>
+
+      <article class="feat">
+        <div class="feat-text">
+          <h3><span class="idx">F4</span>评测体系</h3>
+          <p>
+            先跑一次裸向量基线并留档，此后任何改动都与它逐题 diff——「从 X 到 Y」的 X 必须先存在。
+            拒答阈值不是拍出来的：用 5 条负例的分数分布，卡在负例最高分与正例最低分之间。
+          </p>
+          <ul class="facts">
+            <li>60 条黄金集 · 5 类题型 · 24 条口语化问法 · 9 组对照题</li>
+            <li>Recall@5 0.852 · Hit@5 0.927 · MRR 0.809</li>
+            <li>拒答阈值 0.62（负例最高 0.599 &lt; 阈值 &lt; 正例最低 0.648）</li>
+            <li>知识库重构迁移后指标逐位一致，无回退</li>
+          </ul>
+        </div>
+        <figure class="shot">
+          <img src="assets/shots/04-eval.png" alt="检索实验台与评测报告" loading="lazy" width="1600" height="1000">
+          <div class="ph"><b>04</b><span>检索实验台与评测报告</span><code>assets/shots/04-eval.png</code></div>
+        </figure>
+      </article>
+
+      <article class="feat">
+        <div class="feat-text">
+          <h3><span class="idx">F5</span>Agent 编排</h3>
+          <p>
+            思考过程、正文、工具参数都是增量输出；随时可以停止生成，已产出的内容照常保留。
+            关键动作不靠提示词约束，而是图结构：起草工单后强制挂起等待人工决定，
+            批准之前受理接口在工具节点被硬拦——模型绕不过去。
+          </p>
+          <ul class="facts">
+            <li>SSE 十类事件，覆盖思考 / 正文 / 工具 / 来源 / 耗时 / 确认</li>
+            <li>起草 → 挂起 → 人工批准；被拒则工单保持草稿</li>
+            <li>每轮思考、token、耗时落库，会话级汇总</li>
+          </ul>
+        </div>
+        <figure class="shot">
+          <img src="assets/shots/05-agent-gate.png" alt="思考过程与确认门" loading="lazy" width="1600" height="1000">
+          <div class="ph"><b>05</b><span>思考过程与工单确认门</span><code>assets/shots/05-agent-gate.png</code></div>
+        </figure>
+      </article>
+
+      <article class="feat">
+        <div class="feat-text">
+          <h3><span class="idx">F6</span>对接 ERP</h3>
+          <p>
+            自托管 ERPNext 作为工单系统，用最小权限账号的 token 接入，只暴露 4 个业务动作
+            （资产台账 / 备件库存 / 起草工单 / 受理工单），不提供通用 CRUD——把通用写接口交给大模型，
+            等于把生产库交给它。写入先建 On Hold 草稿，人工确认后才置 Open。
+          </p>
+          <ul class="facts">
+            <li>限流与 5xx 指数退避重试；字段不兼容时自动降级</li>
+            <li>ERP 错误响应提取成人话，直接回给用户</li>
+            <li>9 容器自托管，无商业 ERP 授权与订阅</li>
+          </ul>
+        </div>
+        <figure class="shot">
+          <img src="assets/shots/06-erp.png" alt="ERP 工单与资产台账" loading="lazy" width="1600" height="1000">
+          <div class="ph"><b>06</b><span>ERP 工单与资产台账</span><code>assets/shots/06-erp.png</code></div>
+        </figure>
+      </article>
+
+      <article class="feat">
+        <div class="feat-text">
+          <h3><span class="idx">F7</span>对接钉钉</h3>
+          <p>
+            扫码登录打通身份链路，审批模板按名幂等复用，审批人由服务端跨部门规则路由——提交人不可自选。
+            提交后立即返回，后台 30 秒轮询跟进，审批通过自动受理 ERP 工单，
+            人只需要在钉钉点一次同意，不用二次录入。
+          </p>
+          <ul class="facts">
+            <li>现场照片走 OSS 直链；附件写入审批钉盘</li>
+            <li>网页端先行处理时终止钉钉审批单，保持单一事实来源</li>
+            <li>钉钉不可用时自动降级为网页确认，不阻塞工单</li>
+          </ul>
+        </div>
+        <figure class="shot">
+          <img src="assets/shots/07-dingtalk.png" alt="钉钉端审批单" loading="lazy" width="1600" height="1000">
+          <div class="ph"><b>07</b><span>钉钉端审批单</span><code>assets/shots/07-dingtalk.png</code></div>
+        </figure>
+      </article>
+
+      <article class="feat">
+        <div class="feat-text">
+          <h3><span class="idx">F8</span>Skill 架构</h3>
+          <p>
+            没有把工具一股脑塞进提示词。系统提示词只注入技能索引，模型需要执行某个工作流时，
+            先调用 load_skill 读取正文，该技能勾选的工具才挂载进工具表。常驻工具只有 3 个，
+            接新场景不会让每轮的 token 和响应成本往上走。
+          </p>
+          <ul class="facts">
+            <li>SKILL.md + scripts 约定，不引入 MCP，改文件即热加载</li>
+            <li>脚本走 stdin / stdout JSON，超时、截断、异常统一兜底</li>
+            <li>单个技能文件损坏只标红跳过，不拖垮 Agent</li>
+          </ul>
+        </div>
+        <figure class="shot">
+          <img src="assets/shots/08-skills.png" alt="技能包与工具管理" loading="lazy" width="1600" height="1000">
+          <div class="ph"><b>08</b><span>技能包与工具管理</span><code>assets/shots/08-skills.png</code></div>
+        </figure>
+      </article>
+
+      <article class="feat">
+        <div class="feat-text">
+          <h3><span class="idx">F9</span>管理后台</h3>
+          <p>
+            文档上传即解析（PDF / DOCX / MD / TXT），解析失败可重来，片段编辑后自动标记向量过期并可单独重嵌。
+            权限是细颗粒的：资源 × 动作 × 知识库范围，授权与撤销全部留痕。
+            改模型、开 rerank、换审批人规则都在界面里点，不用改代码、不用发版。
+          </p>
+          <ul class="facts">
+            <li>九类模块：知识库 / 文档 / 片段 / 场景 / 权限 / 工具 / 技能 / 评测 / 配置</li>
+            <li>无权限访问后台自动弹回，越权接口返回 403</li>
+            <li>授权操作与审批记录入库，可回溯</li>
+          </ul>
+        </div>
+        <figure class="shot">
+          <img src="assets/shots/09-admin.png" alt="片段管理与权限页" loading="lazy" width="1600" height="1000">
+          <div class="ph"><b>09</b><span>片段管理与权限页</span><code>assets/shots/09-admin.png</code></div>
+        </figure>
+      </article>
+    </div>
+  </section>
+
+  <!-- 03 实测数据 -->
+  <section class="sec wrap" id="metrics">
+    <div class="sec-head">
+      <span class="idx">03</span>
+      <h2>实测数据</h2>
+    </div>
+    <div class="sec-body">
+      <p class="muted">全部来自本机与测试环境实测，可复算。</p>
+      <dl class="metrics">
+        <div><dt>检索响应</dt><dd><b>1.05s</b> 单次 P50（embedding 725ms + 库内检索 330ms）</dd></div>
+        <div><dt>单轮上下文</dt><dd><b>3.3k</b> tokens P50，常驻 3 工具，不随场景增长</dd></div>
+        <div><dt>评测基线</dt><dd><b>0.852</b> Recall@5 · Hit@5 0.927 · MRR 0.809</dd></div>
+        <div><dt>语料交付</dt><dd><b>1398</b> chunk，全量灌库 106s，内容哈希幂等重灌</dd></div>
+        <div><dt>审批链路</dt><dd><b>30s</b> 轮询间隔，提交即返回，通过后自动受理 ERP</dd></div>
+        <div><dt>审批实测</dt><dd><b>20 张</b> 实例完成跨部门规则路由与拒绝分支验证</dd></div>
+        <div><dt>资源占用</dt><dd><b>1 台</b> 2C4G 云主机承载 ERPNext（9 容器）</dd></div>
+        <div><dt>回归测试</dt><dd><b>11/11</b> 链路回归脚本全绿</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 04 技术栈 -->
+  <section class="sec wrap" id="stack">
+    <div class="sec-head">
+      <span class="idx">04</span>
+      <h2>技术栈</h2>
+    </div>
+    <div class="sec-body">
+      <ul class="stack">
+        <li><span>编排与后端</span>Python · LangGraph · FastAPI · SSE · OpenAI 兼容协议</li>
+        <li><span>知识与检索</span>PostgreSQL · pgvector · bge-m3 · HNSW · 阿里云 OSS</li>
+        <li><span>业务系统</span>ERPNext v15 · 钉钉开放平台（工作流 / 通讯录 / 钉盘）</li>
+        <li><span>前端与后台</span>React 19 · TypeScript · Vite · Tailwind CSS</li>
+        <li><span>部署与配置</span>Azure VM · Supabase · 环境隔离（.env / erp.env / dingtalk.env）</li>
+        <li><span>规模</span>10 个模块 · 100+ 项功能 · 回归脚本 11/11</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <p>页内数字为本机与测试环境实测；项目为落地验证形态，单场景全链路已跑通，未接入真实产线。展示中的设备、台账号与单据均为演示数据。</p>
+    <p class="links">
+      <a href="#" data-placeholder>GitHub（待填）</a>
+      <a href="#" data-placeholder>联系邮箱（待填）</a>
+    </p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
