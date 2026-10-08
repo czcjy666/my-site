@@ -144,17 +144,29 @@ a:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; border-rad
   color: var(--t1);
 }
 .cat:first-of-type { margin-top: 26px; padding-top: 0; border-top: 0; }
+.cat em {
+  margin-left: 10px;
+  font-style: normal; font-weight: 400; font-size: 12px;
+  color: var(--t3);
+}
 
 .flist { margin: 0; padding: 0; list-style: none; }
 .flist li {
   display: grid;
-  grid-template-columns: 168px 1fr;
+  grid-template-columns: 184px 1fr;
   gap: 20px;
   padding: 12px 0;
   border-top: 1px solid var(--line);
 }
 .flist li:last-child { border-bottom: 1px solid var(--line); }
 .flist b { font-size: 14px; font-weight: 600; line-height: 1.8; color: var(--t1); }
+.flist .n {
+  margin-right: 8px;
+  font-family: var(--mono);
+  font-size: 11px; font-weight: 400;
+  color: var(--t3);
+  font-variant-numeric: tabular-nums;
+}
 .flist span { font-size: 14px; line-height: 1.8; color: var(--t2); }
 
 /* ---------- 实际效果 ---------- */

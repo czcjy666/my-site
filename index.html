@@ -68,111 +68,475 @@
       <h2>功能清单</h2>
     </div>
     <div class="sec-body">
-      <p class="muted">共 22 项，分四类。每项一句人话，说清它解决什么问题。</p>
-
-      <h3 class="cat">一、知识与检索</h3>
+      <p class="muted">共 109 项，按十个模块分类。每项一句人话，说清它做什么。</p>
+      <!-- FEATURES:BEGIN -->
+      <h3 class="cat">一、手册知识加工<em>10 项</em></h3>
       <ul class="flist">
         <li>
-          <b>手册拆解</b>
-          <span>几百页手册按版式分四类拆成 1398 条独立知识（参数 1207 · 警告 91 · 故障 100），每条标明来源页码，可逐条核对。</span>
+          <b><span class="n">01</span>复杂版式拆解</b>
+          <span>表格里套图片、表格里套表格这类排版，按四种形态分别处理，不被切碎。</span>
         </li>
         <li>
-          <b>双路查找</b>
-          <span>既能按编号、名称精确匹配，也能按意思相近搜索；用户怎么问都行，用哪套由系统自己判断。</span>
+          <b><span class="n">02</span>逐条独立知识</b>
+          <span>手册拆成 1398 条（参数 1207、警告 91、故障 100），每条都能单独使用。</span>
         </li>
         <li>
-          <b>来源可查</b>
-          <span>每个结论后面跟一个来源编号，能看到原文摘要和来源清单；没有依据的内容不假装有出处。</span>
+          <b><span class="n">03</span>原文逐字核对</b>
+          <span>每条知识都和手册原文逐字比对过，不是概括改写。</span>
         </li>
         <li>
-          <b>资料隔离</b>
+          <b><span class="n">04</span>数量对账</b>
+          <span>拆完与手册目录逐条核对数量，确保没漏、没重。</span>
+        </li>
+        <li>
+          <b><span class="n">05</span>抽样目检</b>
+          <span>人工抽查确认拆解质量。</span>
+        </li>
+        <li>
+          <b><span class="n">06</span>插图处理</b>
+          <span>手册插图裁切、去白边后单独存放，附图参数可对照原图。</span>
+        </li>
+        <li>
+          <b><span class="n">07</span>图文顺序检查</b>
+          <span>自动检查图片和说明文字的先后顺序是否与手册一致。</span>
+        </li>
+        <li>
+          <b><span class="n">08</span>交叉引用整理</b>
+          <span>整理出 950 处「故障 ↔ 相关参数」的互相引用。</span>
+        </li>
+        <li>
+          <b><span class="n">09</span>页码标注</b>
+          <span>每条知识标明来自手册第几页，1207 条参数全部补齐。</span>
+        </li>
+        <li>
+          <b><span class="n">10</span>处理规范留档</b>
+          <span>四份处理规范加一份分类总账，规则可追溯、可复现。</span>
+        </li>
+      </ul>
+      <h3 class="cat">二、知识库与检索<em>11 项</em></h3>
+      <ul class="flist">
+        <li>
+          <b><span class="n">11</span>统一存放</b>
+          <span>所有知识集中存在数据库里，不再散落在各人电脑上。</span>
+        </li>
+        <li>
+          <b><span class="n">12</span>意思指纹</b>
+          <span>每条知识生成「意思指纹」，支持按意思查找。</span>
+        </li>
+        <li>
+          <b><span class="n">13</span>快速索引</b>
+          <span>建了 4 个索引，编号、名称、分类都能快速命中。</span>
+        </li>
+        <li>
+          <b><span class="n">14</span>重复导入不出错</b>
+          <span>同一份资料重复导入只覆盖不重复，可反复重建。</span>
+        </li>
+        <li>
+          <b><span class="n">15</span>迁移零丢失</b>
+          <span>换存储结构后逐条校验，1398 条一条不差。</span>
+        </li>
+        <li>
+          <b><span class="n">16</span>按编号查</b>
+          <span>报参数号或故障码，直接定位到那一条。</span>
+        </li>
+        <li>
+          <b><span class="n">17</span>按名称查</b>
+          <span>只记得大概名字也能找到。</span>
+        </li>
+        <li>
+          <b><span class="n">18</span>按意思查</b>
+          <span>说大白话、打比方也能找到，比如「一减速就报过压」。</span>
+        </li>
+        <li>
+          <b><span class="n">19</span>结果格式统一</b>
+          <span>两种查找方式返回的内容格式一致，便于核对。</span>
+        </li>
+        <li>
+          <b><span class="n">20</span>场景隔离</b>
           <span>每个场景只能看到自己那份资料，部门之间不会互相串。</span>
         </li>
         <li>
-          <b>质量体检</b>
-          <span>60 道自测题定期评分：85.2% 能把该找的内容找全，92.7% 至少能找到一条对的；超出范围时明确回答「手册里没有」。</span>
+          <b><span class="n">21</span>断线自动恢复</b>
+          <span>数据库连接被掐断时自动恢复，不影响使用。</span>
         </li>
       </ul>
-
-      <h3 class="cat">二、系统对接</h3>
+      <h3 class="cat">三、质量体检<em>9 项</em></h3>
       <ul class="flist">
         <li>
-          <b>设备与备件查询</b>
-          <span>查设备台账、查备件库存；建议换件前先确认仓库有没有货。</span>
+          <b><span class="n">22</span>自测题集</b>
+          <span>60 道题覆盖五类问法：报码查含义、参数怎么设、场景排查、交叉引用、无答案。</span>
         </li>
         <li>
-          <b>工单两段式</b>
-          <span>AI 只能写「待确认」草稿，人工确认后才正式受理，避免误提交。</span>
+          <b><span class="n">23</span>口语化问法</b>
+          <span>24 道题用现场师傅的说法提问，检验大白话能不能答。</span>
         </li>
         <li>
-          <b>只开四个动作</b>
-          <span>查设备、查备件、写工单、受理工单，只有这四件事；没有「随便改」的入口。</span>
+          <b><span class="n">24</span>对照题组</b>
+          <span>9 组「标准问法 vs 现场问法」对照，看两种问法是否都能答对。</span>
         </li>
         <li>
-          <b>对接抗抖动</b>
-          <span>对方系统偶尔卡顿或报错时，自动重试或降级，不打断对话。</span>
+          <b><span class="n">25</span>成绩指标</b>
+          <span>记录「找全了没」「找到没」「排在第几」三个指标。</span>
         </li>
         <li>
-          <b>钉钉审批</b>
-          <span>钉钉扫码登录，审批单直接发到钉钉；审批人由规则自动指定，提交人不能自己挑人。</span>
+          <b><span class="n">26</span>留档对比</b>
+          <span>每次成绩存档，可和历史逐题对比，证明是变好还是变差。</span>
         </li>
         <li>
-          <b>审批后自动受理</b>
-          <span>提交后立即返回，后台每 30 秒查一次结果，通过就自动受理，人只点一次「同意」。</span>
+          <b><span class="n">27</span>说「不知道」的门槛</b>
+          <span>用 5 道无答案题和 55 道有答案题的分数分布，卡出一条明确分界。</span>
         </li>
         <li>
-          <b>材料随单</b>
-          <span>现场照片和材料直接附在审批单上；钉钉临时用不了时退回网页确认，不耽误工单。</span>
+          <b><span class="n">28</span>不硬编答案</b>
+          <span>超出资料范围时明确回答「手册里没有」，不猜不编。</span>
+        </li>
+        <li>
+          <b><span class="n">29</span>重建后复测</b>
+          <span>资料库搬家重建后成绩一分不差，确认没有退步。</span>
+        </li>
+        <li>
+          <b><span class="n">30</span>自测台</b>
+          <span>后台可以增删改题目、随时跑一轮成绩、和历史对比。</span>
         </li>
       </ul>
-
-      <h3 class="cat">三、AI 的行为约束</h3>
+      <h3 class="cat">四、对话与执行<em>11 项</em></h3>
       <ul class="flist">
         <li>
-          <b>关键一步人工确认</b>
-          <span>写工单必须等人确认，流程上就过不去，不是靠叮嘱 AI 谨慎。</span>
+          <b><span class="n">31</span>一次对话走完</b>
+          <span>查手册、查设备、查备件、写工单、走审批、自动受理，都在一次对话里。</span>
         </li>
         <li>
-          <b>过程实时可见</b>
-          <span>思考和回答边生成边显示，可以随时中断，已经写出的内容不丢。</span>
+          <b><span class="n">32</span>自主判断</b>
+          <span>系统自己决定该查手册还是该查库存，用户不用管流程。</span>
         </li>
         <li>
-          <b>用量有记录</b>
-          <span>每次问答用了多少资源、花了多长时间都有记录，按会话汇总。</span>
+          <b><span class="n">33</span>边想边说</b>
+          <span>思考和回答实时逐字显示，不用等整段生成完。</span>
         </li>
         <li>
-          <b>主动提议但不啰嗦</b>
-          <span>故障解答后会主动问「要不要帮你起草工单」；用户拒绝过的，不重复问。</span>
+          <b><span class="n">34</span>随时中断</b>
+          <span>中途可以停下来，已经写出的内容不丢。</span>
         </li>
         <li>
-          <b>功能按需装载</b>
-          <span>平时只带 3 个基础能力，新功能用的时候才临时装上——加功能不会让每次回答都变慢变贵。</span>
+          <b><span class="n">35</span>过程可见</b>
+          <span>每一步用了什么、花了多久都展示出来。</span>
         </li>
         <li>
-          <b>不会一处坏全盘停</b>
-          <span>某个功能文件坏掉只影响它自己；功能改完立即生效，不用停机更新。</span>
+          <b><span class="n">36</span>来源标注</b>
+          <span>结论后面跟来源编号，可看原文摘要和来源清单。</span>
+        </li>
+        <li>
+          <b><span class="n">37</span>接得住上下文</b>
+          <span>同一个会话里能接住前面说过的内容，不用重复交代。</span>
+        </li>
+        <li>
+          <b><span class="n">38</span>自动起标题</b>
+          <span>会话按内容自动命名，方便回头翻找。</span>
+        </li>
+        <li>
+          <b><span class="n">39</span>历史回看</b>
+          <span>过去的会话记录可以随时翻查。</span>
+        </li>
+        <li>
+          <b><span class="n">40</span>用量记录</b>
+          <span>每一轮的资源用量和耗时都记录在案，按会话汇总。</span>
+        </li>
+        <li>
+          <b><span class="n">41</span>主动提议</b>
+          <span>故障解答后主动问「要不要帮你起草工单」；用户拒绝过的，不重复问。</span>
         </li>
       </ul>
-
-      <h3 class="cat">四、管理后台</h3>
+      <h3 class="cat">五、对接 ERP 工单系统<em>11 项</em></h3>
       <ul class="flist">
         <li>
-          <b>资料维护</b>
-          <span>Word、PDF 等常见格式上传后自动读入；读得不对可以重来，单条内容可以直接改。</span>
+          <b><span class="n">42</span>系统自托管</b>
+          <span>自建工单系统，不采购商业软件授权。</span>
         </li>
         <li>
-          <b>权限分配</b>
-          <span>按人逐项分配「能看什么、能做什么」，谁能进后台也有开关，授权和撤销都留记录。</span>
+          <b><span class="n">43</span>专用账号接入</b>
+          <span>用权限刚好够用的专用账号接入，能做什么由对方系统卡住。</span>
         </li>
         <li>
-          <b>配置即改</b>
-          <span>换 AI 模型、调整查找方式在后台点选即可，不改代码、不停机。</span>
+          <b><span class="n">44</span>查设备台账</b>
+          <span>查设备名称、所在位置、台账号。</span>
         </li>
         <li>
-          <b>自测台</b>
-          <span>自测题可以增删改，随时跑一轮成绩，并和历史成绩对比，看这次改动是变好还是变差。</span>
+          <b><span class="n">45</span>查备件库存</b>
+          <span>查备件数量与所在仓库；建议换件前先确认有没有货。</span>
+        </li>
+        <li>
+          <b><span class="n">46</span>起草工单</b>
+          <span>把故障现象、原因、处理措施、备件情况组装成一张工单。</span>
+        </li>
+        <li>
+          <b><span class="n">47</span>工单两段式</b>
+          <span>先写「待确认」草稿，人工确认后才正式受理。</span>
+        </li>
+        <li>
+          <b><span class="n">48</span>只开四个动作</b>
+          <span>查设备、查备件、写工单、受理工单，只有这四件事，没有「随便改」的入口。</span>
+        </li>
+        <li>
+          <b><span class="n">49</span>自动重试</b>
+          <span>对方系统卡顿或限流时，自动按间隔重试。</span>
+        </li>
+        <li>
+          <b><span class="n">50</span>自动降级</b>
+          <span>字段不兼容时自动调整后重试，不直接报错中断。</span>
+        </li>
+        <li>
+          <b><span class="n">51</span>报错翻译</b>
+          <span>对方系统返回的报错信息转成人话，直接告诉用户。</span>
+        </li>
+        <li>
+          <b><span class="n">52</span>演示数据齐全</b>
+          <span>设备台账、备件库存、操作引导都是现成的演示数据。</span>
         </li>
       </ul>
+      <h3 class="cat">六、对接钉钉审批<em>15 项</em></h3>
+      <ul class="flist">
+        <li>
+          <b><span class="n">53</span>扫码登录</b>
+          <span>用钉钉扫码登录，不用另开一套账号密码。</span>
+        </li>
+        <li>
+          <b><span class="n">54</span>通讯录读取</b>
+          <span>读公司成员与部门，用来指定审批人。</span>
+        </li>
+        <li>
+          <b><span class="n">55</span>审批单模板</b>
+          <span>自动创建或复用审批模板，不用手工去钉钉里搭。</span>
+        </li>
+        <li>
+          <b><span class="n">56</span>发起审批</b>
+          <span>把工单内容填进审批单，发给审批人。</span>
+        </li>
+        <li>
+          <b><span class="n">57</span>审批人自动指定</b>
+          <span>审批人由规则自动指定，提交人不能自己挑人。</span>
+        </li>
+        <li>
+          <b><span class="n">58</span>跨部门审批</b>
+          <span>优先选其他部门的人来审，避免自己审自己。</span>
+        </li>
+        <li>
+          <b><span class="n">59</span>提交即返回</b>
+          <span>发起后立即返回，不用挂在页面上等。</span>
+        </li>
+        <li>
+          <b><span class="n">60</span>后台自动跟进</b>
+          <span>每 30 秒查一次审批结果，通过就自动受理工单。</span>
+        </li>
+        <li>
+          <b><span class="n">61</span>不通过则保留</b>
+          <span>审批不通过时工单保持待确认，不产生脏数据。</span>
+        </li>
+        <li>
+          <b><span class="n">62</span>现场照片</b>
+          <span>照片以永久链接附在审批单上，手机和电脑都能看。</span>
+        </li>
+        <li>
+          <b><span class="n">63</span>材料附件</b>
+          <span>材料存进审批系统的附件空间，随审批单一起流转。</span>
+        </li>
+        <li>
+          <b><span class="n">64</span>状态可查</b>
+          <span>审批进度可以查询，带缓存避免频繁打扰对方系统。</span>
+        </li>
+        <li>
+          <b><span class="n">65</span>两边不打架</b>
+          <span>网页上已经处理过的，钉钉那边自动终止，避免两处状态不一致。</span>
+        </li>
+        <li>
+          <b><span class="n">66</span>不可用则降级</b>
+          <span>钉钉临时用不了时退回网页上确认，不耽误工单。</span>
+        </li>
+        <li>
+          <b><span class="n">67</span>审批记录留档</b>
+          <span>谁提交、谁审批、走的什么规则、结果如何，都有记录。</span>
+        </li>
+      </ul>
+      <h3 class="cat">七、能力按需装载<em>14 项</em></h3>
+      <ul class="flist">
+        <li>
+          <b><span class="n">68</span>技能包机制</b>
+          <span>每项工作流写成一个独立文件，包含触发条件和执行步骤。</span>
+        </li>
+        <li>
+          <b><span class="n">69</span>命名规范校验</b>
+          <span>技能命名有统一规范，格式不对会被标出来。</span>
+        </li>
+        <li>
+          <b><span class="n">70</span>一处坏不拖垮</b>
+          <span>某个技能文件有问题只影响它自己，其他功能照常运行。</span>
+        </li>
+        <li>
+          <b><span class="n">71</span>改完即生效</b>
+          <span>改文件立即生效，不用停机、不用发版。</span>
+        </li>
+        <li>
+          <b><span class="n">72</span>平时只给索引</b>
+          <span>平时只告诉 AI 有哪些技能、各自干什么。</span>
+        </li>
+        <li>
+          <b><span class="n">73</span>按需读取</b>
+          <span>要用某个技能时，才去读它的完整步骤。</span>
+        </li>
+        <li>
+          <b><span class="n">74</span>按需装载能力</b>
+          <span>技能用到哪些能力才临时装上，不用就不装。</span>
+        </li>
+        <li>
+          <b><span class="n">75</span>只带三个基础能力</b>
+          <span>常驻只有查资料、按意思查、读技能这三个。</span>
+        </li>
+        <li>
+          <b><span class="n">76</span>没装上有提示</b>
+          <span>调用了没装上的能力会收到提示，按提示补装再试一次。</span>
+        </li>
+        <li>
+          <b><span class="n">77</span>可一键停用</b>
+          <span>某个能力可以一键停用，停用后调用会被拦下。</span>
+        </li>
+        <li>
+          <b><span class="n">78</span>技能可带脚本</b>
+          <span>需要复杂计算时，技能可以附一段脚本来执行。</span>
+        </li>
+        <li>
+          <b><span class="n">79</span>脚本输出规范</b>
+          <span>脚本统一用规定的输入输出格式，失败会明确报错。</span>
+        </li>
+        <li>
+          <b><span class="n">80</span>超时与截断保护</b>
+          <span>脚本超时或输出过长时自动截断，不会卡住对话。</span>
+        </li>
+        <li>
+          <b><span class="n">81</span>后台可建可改</b>
+          <span>技能能在后台新建、编辑、停用；手写的技能只读，防误覆盖。</span>
+        </li>
+      </ul>
+      <h3 class="cat">八、工作台界面<em>10 项</em></h3>
+      <ul class="flist">
+        <li>
+          <b><span class="n">82</span>逐字显示</b>
+          <span>回答像打字一样逐字出现，不用等整段。</span>
+        </li>
+        <li>
+          <b><span class="n">83</span>思考过程可折叠</b>
+          <span>中间的推理过程可以展开看，也可以收起。</span>
+        </li>
+        <li>
+          <b><span class="n">84</span>步骤进度</b>
+          <span>当前走到哪一步、每步花了多久都有显示。</span>
+        </li>
+        <li>
+          <b><span class="n">85</span>来源悬浮预览</b>
+          <span>鼠标移到来源编号上能看原文摘要，点开是完整清单。</span>
+        </li>
+        <li>
+          <b><span class="n">86</span>确认表单</b>
+          <span>提交前弹出表单，内容可以改，也能上传材料。</span>
+        </li>
+        <li>
+          <b><span class="n">87</span>重新生成</b>
+          <span>不满意可以重来，并提前提示会重复计费。</span>
+        </li>
+        <li>
+          <b><span class="n">88</span>错误提示</b>
+          <span>出错时说明原因，可以重试。</span>
+        </li>
+        <li>
+          <b><span class="n">89</span>会话侧栏</b>
+          <span>会话可以搜索、改名、删除。</span>
+        </li>
+        <li>
+          <b><span class="n">90</span>深浅两种主题</b>
+          <span>白天和晚上都看得清。</span>
+        </li>
+        <li>
+          <b><span class="n">91</span>开局引导</b>
+          <span>新用户有示例问题引导，不用猜该怎么问。</span>
+        </li>
+      </ul>
+      <h3 class="cat">九、管理后台<em>11 项</em></h3>
+      <ul class="flist">
+        <li>
+          <b><span class="n">92</span>权限逐项分配</b>
+          <span>按人分配「能看什么、能做什么」，还能限定到具体哪个资料库。</span>
+        </li>
+        <li>
+          <b><span class="n">93</span>越权拦截</b>
+          <span>没有权限的操作直接拒绝，没后台权限的访问会被弹回工作台。</span>
+        </li>
+        <li>
+          <b><span class="n">94</span>授权留痕</b>
+          <span>谁给谁授了什么权、什么时候撤销，全部留记录。</span>
+        </li>
+        <li>
+          <b><span class="n">95</span>资料库管理</b>
+          <span>可以建多个资料库，各自选择处理方式。</span>
+        </li>
+        <li>
+          <b><span class="n">96</span>文档管理</b>
+          <span>上传自动读入，可下载、替换新版、重新读入、停用、删除。</span>
+        </li>
+        <li>
+          <b><span class="n">97</span>知识条目管理</b>
+          <span>可按类型筛选、搜索、编辑、停用，单条改完可单独重新处理。</span>
+        </li>
+        <li>
+          <b><span class="n">98</span>场景绑定</b>
+          <span>把场景和资料库绑定，决定谁能检索到哪份资料。</span>
+        </li>
+        <li>
+          <b><span class="n">99</span>能力管理</b>
+          <span>查看所有能力、一键启停，也能自己新增能力。</span>
+        </li>
+        <li>
+          <b><span class="n">100</span>技能管理</b>
+          <span>技能的新建、编辑、停用。</span>
+        </li>
+        <li>
+          <b><span class="n">101</span>用量统计</b>
+          <span>按天统计使用情况。</span>
+        </li>
+        <li>
+          <b><span class="n">102</span>配置中心</b>
+          <span>换 AI 模型、调整查找方式、改审批规则、开关演示登录，都在界面上点选。</span>
+        </li>
+      </ul>
+      <h3 class="cat">十、工程与运维<em>7 项</em></h3>
+      <ul class="flist">
+        <li>
+          <b><span class="n">103</span>配置立即生效</b>
+          <span>改配置立即生效；配置读取出问题也不影响对话。</span>
+        </li>
+        <li>
+          <b><span class="n">104</span>密钥分离存放</b>
+          <span>各类密钥分别保存、不进代码库，缺失时自动降级而不是报错。</span>
+        </li>
+        <li>
+          <b><span class="n">105</span>图片云端存放</b>
+          <span>手册插图存云端对象存储，页面按需取用。</span>
+        </li>
+        <li>
+          <b><span class="n">106</span>中断不留脏数据</b>
+          <span>用户中途离开时服务端及时收口，记录标记为已中断。</span>
+        </li>
+        <li>
+          <b><span class="n">107</span>权限不足自动回退</b>
+          <span>没有权限的页面自动跳回工作台。</span>
+        </li>
+        <li>
+          <b><span class="n">108</span>自动回归检查</b>
+          <span>11 项链路自检脚本，改动后跑一遍确认没坏。</span>
+        </li>
+        <li>
+          <b><span class="n">109</span>分模块自检脚本</b>
+          <span>各模块都有独立的自检脚本，可以单独验证。</span>
+        </li>
+      </ul>
+      <!-- FEATURES:END -->
     </div>
   </section>
 
@@ -210,7 +574,7 @@
         <li><span>业务系统</span>ERPNext v15 · 钉钉开放平台（工作流 / 通讯录 / 钉盘）</li>
         <li><span>前端与后台</span>React 19 · TypeScript · Vite · Tailwind CSS</li>
         <li><span>部署与配置</span>Azure VM · Supabase · 环境隔离（.env / erp.env / dingtalk.env）</li>
-        <li><span>规模</span>10 个模块 · 100+ 项功能 · 11 项自动检查全通过</li>
+        <li><span>规模</span>10 个模块 · 109 项功能 · 11 项自动检查全通过</li>
       </ul>
     </div>
   </section>
