@@ -13,7 +13,6 @@
   --t3: #8c8c8c;
   --acc: #1a56db;
 
-  --radius: 8px;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
           "HarmonyOS Sans SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -88,9 +87,8 @@ a:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; border-rad
   border-top: 1px solid var(--line);
 }
 .stats li {
-  padding: 20px 0 0;
+  padding: 20px 0 0 20px;
   border-left: 1px solid var(--line);
-  padding-left: 20px;
 }
 .stats li:first-child { border-left: 0; padding-left: 0; }
 .stats b {
@@ -99,7 +97,7 @@ a:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; border-rad
   font-variant-numeric: tabular-nums;
   letter-spacing: -.01em;
 }
-.stats span { display: block; margin-top: 2px; font-size: 12px; color: var(--t3); }
+.stats span { display: block; margin-top: 2px; font-size: 12px; line-height: 1.7; color: var(--t3); }
 
 /* ---------- 区块骨架：左标签 + 右内容 ---------- */
 .sec {
@@ -137,79 +135,29 @@ a:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; border-rad
   letter-spacing: .02em;
 }
 
-/* ---------- 功能块：文左图右 ---------- */
-.feat {
+/* ---------- 功能清单：分类 + 罗列 ---------- */
+.cat {
+  margin: 40px 0 4px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 14px; font-weight: 600; line-height: 1.6;
+  color: var(--t1);
+}
+.cat:first-of-type { margin-top: 26px; padding-top: 0; border-top: 0; }
+
+.flist { margin: 0; padding: 0; list-style: none; }
+.flist li {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 44px;
-  align-items: start;
-  padding: 44px 0;
+  grid-template-columns: 168px 1fr;
+  gap: 20px;
+  padding: 12px 0;
   border-top: 1px solid var(--line);
 }
-.feat:first-of-type { border-top: 0; padding-top: 8px; }
+.flist li:last-child { border-bottom: 1px solid var(--line); }
+.flist b { font-size: 14px; font-weight: 600; line-height: 1.8; color: var(--t1); }
+.flist span { font-size: 14px; line-height: 1.8; color: var(--t2); }
 
-.feat h3 {
-  margin: 0 0 12px;
-  font-size: 17px; font-weight: 600; line-height: 1.6;
-}
-.feat h3 .idx { display: inline; margin-right: 10px; }
-.feat-text > p {
-  margin: 0 0 16px;
-  font-size: 14px; line-height: 1.85;
-  color: var(--t2);
-}
-
-.facts { margin: 0; padding: 0; list-style: none; }
-.facts li {
-  padding: 8px 0;
-  border-top: 1px solid var(--line);
-  font-size: 13px; line-height: 1.7;
-  color: var(--t2);
-}
-.facts li:last-child { border-bottom: 1px solid var(--line); }
-
-/* ---------- 截图位 ---------- */
-.shot { position: relative; margin: 0; }
-.shot img {
-  display: block;
-  width: 100%; height: auto;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--bg-soft);
-}
-.ph {
-  display: none;
-  aspect-ratio: 16 / 10;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--bg-soft);
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  text-align: center;
-  padding: 20px;
-}
-.shot.is-missing img { display: none; }
-.shot.is-missing .ph { display: flex; }
-.ph b {
-  font-size: 22px; font-weight: 600;
-  color: #cfcfcf;
-  font-variant-numeric: tabular-nums;
-}
-.ph span { font-size: 13px; color: var(--t3); }
-.ph code {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--t3);
-  background: #efefef;
-  border-radius: 4px;
-  padding: 2px 7px;
-}
-
-/* ---------- 实测数据 ---------- */
+/* ---------- 实际效果 ---------- */
 .metrics { margin: 0; }
 .metrics > div {
   display: grid;
@@ -227,7 +175,7 @@ a:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; border-rad
   margin-right: 8px;
 }
 
-/* ---------- 技术栈 ---------- */
+/* ---------- 用到的技术 ---------- */
 .stack { margin: 0; padding: 0; list-style: none; }
 .stack li {
   display: grid;
@@ -258,10 +206,10 @@ a:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; border-rad
   .sec { grid-template-columns: 1fr; gap: 20px; padding: 48px 0; }
   .sec-head { display: flex; align-items: baseline; gap: 10px; }
   .sec-head .idx { margin: 0; }
-  .feat { grid-template-columns: 1fr; gap: 24px; padding: 36px 0; }
   .stats { grid-template-columns: repeat(2, 1fr); row-gap: 20px; }
   .stats li:nth-child(odd) { border-left: 0; padding-left: 0; }
-  .metrics > div, .stack li { grid-template-columns: 1fr; gap: 2px; }
+  .flist li, .metrics > div, .stack li { grid-template-columns: 1fr; gap: 2px; }
+  .cat { margin-top: 32px; }
 }
 
 @media (max-width: 560px) {

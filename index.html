@@ -15,7 +15,7 @@
     <a class="brand" href="#top">工业运维 AI Agent 工作台</a>
     <nav class="nav-links">
       <a href="#position">它解决什么</a>
-      <a href="#features">九项功能</a>
+      <a href="#features">功能清单</a>
       <a href="#metrics">实际效果</a>
       <a href="#stack">用到的技术</a>
     </nav>
@@ -61,189 +61,118 @@
     </div>
   </section>
 
-  <!-- 02 九项功能 -->
+  <!-- 02 功能清单 -->
   <section class="sec wrap" id="features">
     <div class="sec-head">
       <span class="idx">02</span>
-      <h2>九项功能</h2>
+      <h2>功能清单</h2>
     </div>
     <div class="sec-body">
-      <p class="muted">每块先说它解决什么问题，再说怎么做到的。</p>
+      <p class="muted">共 22 项，分四类。每项一句人话，说清它解决什么问题。</p>
 
-      <article class="feat">
-        <div class="feat-text">
-          <h3><span class="idx">F1</span>把几百页手册变成能用的知识</h3>
-          <p>
-            变频器手册几百页，参数表里还套着图片和子表格。整段丢给 AI，它会把参数张冠李戴——
-            现场照着错的参数操作，代价很高。这套系统按版式分四类拆解手册，做成一条条独立知识，
-            每条都标明来自哪一页，方便逐条核对。
-          </p>
-          <ul class="facts">
-            <li>手册拆出 1398 条：参数 1207 条、警告 91 条、故障 100 条</li>
-            <li>每条都能翻回手册原文对照，从源头防止 AI 编参数</li>
-            <li>顺带整理出 950 处「故障 ↔ 相关参数」的互相引用</li>
-          </ul>
-        </div>
-        <figure class="shot">
-          <img src="assets/shots/01-corpus.png" alt="手册原页与拆解后的知识条目对照" loading="lazy" width="1600" height="1000">
-          <div class="ph"><b>01</b><span>手册原页与拆解后的知识条目对照</span><code>assets/shots/01-corpus.png</code></div>
-        </figure>
-      </article>
+      <h3 class="cat">一、知识与检索</h3>
+      <ul class="flist">
+        <li>
+          <b>手册拆解</b>
+          <span>几百页手册按版式分四类拆成 1398 条独立知识（参数 1207 · 警告 91 · 故障 100），每条标明来源页码，可逐条核对。</span>
+        </li>
+        <li>
+          <b>双路查找</b>
+          <span>既能按编号、名称精确匹配，也能按意思相近搜索；用户怎么问都行，用哪套由系统自己判断。</span>
+        </li>
+        <li>
+          <b>来源可查</b>
+          <span>每个结论后面跟一个来源编号，能看到原文摘要和来源清单；没有依据的内容不假装有出处。</span>
+        </li>
+        <li>
+          <b>资料隔离</b>
+          <span>每个场景只能看到自己那份资料，部门之间不会互相串。</span>
+        </li>
+        <li>
+          <b>质量体检</b>
+          <span>60 道自测题定期评分：85.2% 能把该找的内容找全，92.7% 至少能找到一条对的；超出范围时明确回答「手册里没有」。</span>
+        </li>
+      </ul>
 
-      <article class="feat">
-        <div class="feat-text">
-          <h3><span class="idx">F2</span>工人说大白话，也能查到那一条</h3>
-          <p>
-            现场师傅不会说标准术语，他说的是「一减速就报过压」。系统准备了两套找法：
-            一套按编号和名称精确匹配，一套按意思相近搜索。用户怎么问都行，用哪套由系统自己判断。
-          </p>
-          <ul class="facts">
-            <li>报编号（31.21）或打比方（一减速就报过压）都能定位到内容</li>
-            <li>一次查找约 1 秒，和用搜索框的感觉差不多</li>
-            <li>每个场景只能看到自己那份资料，部门之间不会串</li>
-          </ul>
-        </div>
-        <figure class="shot">
-          <img src="assets/shots/02-retrieval.png" alt="提问后用两种方式查找的结果" loading="lazy" width="1600" height="1000">
-          <div class="ph"><b>02</b><span>提问后两种查找方式的结果</span><code>assets/shots/02-retrieval.png</code></div>
-        </figure>
-      </article>
+      <h3 class="cat">二、系统对接</h3>
+      <ul class="flist">
+        <li>
+          <b>设备与备件查询</b>
+          <span>查设备台账、查备件库存；建议换件前先确认仓库有没有货。</span>
+        </li>
+        <li>
+          <b>工单两段式</b>
+          <span>AI 只能写「待确认」草稿，人工确认后才正式受理，避免误提交。</span>
+        </li>
+        <li>
+          <b>只开四个动作</b>
+          <span>查设备、查备件、写工单、受理工单，只有这四件事；没有「随便改」的入口。</span>
+        </li>
+        <li>
+          <b>对接抗抖动</b>
+          <span>对方系统偶尔卡顿或报错时，自动重试或降级，不打断对话。</span>
+        </li>
+        <li>
+          <b>钉钉审批</b>
+          <span>钉钉扫码登录，审批单直接发到钉钉；审批人由规则自动指定，提交人不能自己挑人。</span>
+        </li>
+        <li>
+          <b>审批后自动受理</b>
+          <span>提交后立即返回，后台每 30 秒查一次结果，通过就自动受理，人只点一次「同意」。</span>
+        </li>
+        <li>
+          <b>材料随单</b>
+          <span>现场照片和材料直接附在审批单上；钉钉临时用不了时退回网页确认，不耽误工单。</span>
+        </li>
+      </ul>
 
-      <article class="feat">
-        <div class="feat-text">
-          <h3><span class="idx">F3</span>每个结论都告诉你在哪一页</h3>
-          <p>
-            AI 给出的参数值、故障原因、处理措施，后面都会跟一个来源编号。鼠标移到编号上能看原文摘要，
-            点开是完整的来源清单。回答有出处，现场才敢照着做。
-          </p>
-          <ul class="facts">
-            <li>依据能追到手册的具体条目和页码</li>
-            <li>没有依据的内容（比如库存数字）不会假装有出处</li>
-          </ul>
-        </div>
-        <figure class="shot">
-          <img src="assets/shots/03-citations.png" alt="回答中的来源编号与原文摘要" loading="lazy" width="1600" height="1000">
-          <div class="ph"><b>03</b><span>回答里的来源编号与原文摘要</span><code>assets/shots/03-citations.png</code></div>
-        </figure>
-      </article>
+      <h3 class="cat">三、AI 的行为约束</h3>
+      <ul class="flist">
+        <li>
+          <b>关键一步人工确认</b>
+          <span>写工单必须等人确认，流程上就过不去，不是靠叮嘱 AI 谨慎。</span>
+        </li>
+        <li>
+          <b>过程实时可见</b>
+          <span>思考和回答边生成边显示，可以随时中断，已经写出的内容不丢。</span>
+        </li>
+        <li>
+          <b>用量有记录</b>
+          <span>每次问答用了多少资源、花了多长时间都有记录，按会话汇总。</span>
+        </li>
+        <li>
+          <b>主动提议但不啰嗦</b>
+          <span>故障解答后会主动问「要不要帮你起草工单」；用户拒绝过的，不重复问。</span>
+        </li>
+        <li>
+          <b>功能按需装载</b>
+          <span>平时只带 3 个基础能力，新功能用的时候才临时装上——加功能不会让每次回答都变慢变贵。</span>
+        </li>
+        <li>
+          <b>不会一处坏全盘停</b>
+          <span>某个功能文件坏掉只影响它自己；功能改完立即生效，不用停机更新。</span>
+        </li>
+      </ul>
 
-      <article class="feat">
-        <div class="feat-text">
-          <h3><span class="idx">F4</span>答得准不准，用 60 道题定期体检</h3>
-          <p>
-            先量一遍现在的水平再动手改，不然「感觉变好了」不算数。允许说「我不知道」的门槛也是算出来的：
-            把 5 道本来就没有答案的题、和 55 道有答案的题放在一起比分数，中间空出一条明显的分界，门槛就卡在那儿。
-          </p>
-          <ul class="facts">
-            <li>60 道自测题，其中 24 道是工人式的口语问法</li>
-            <li>85.2% 能把该找的内容完整找出来；92.7% 至少能找到一条对的</li>
-            <li>资料库搬家重建后，成绩一分不差，确认没有退步</li>
-            <li>超出资料范围时明确回答「手册里没有」，不硬编答案</li>
-          </ul>
-        </div>
-        <figure class="shot">
-          <img src="assets/shots/04-eval.png" alt="自测题的评分与对比报告" loading="lazy" width="1600" height="1000">
-          <div class="ph"><b>04</b><span>自测题的评分与对比报告</span><code>assets/shots/04-eval.png</code></div>
-        </figure>
-      </article>
-
-      <article class="feat">
-        <div class="feat-text">
-          <h3><span class="idx">F5</span>关键一步必须人来点同意</h3>
-          <p>
-            AI 可以写工单草稿，但不能自己提交。要提交时，系统会停下来等人确认——这不是靠叮嘱 AI
-            「你要谨慎」，而是流程上就过不去：没有人确认，提交这条路走不通。
-          </p>
-          <ul class="facts">
-            <li>写工单必须人工确认，AI 无法绕过</li>
-            <li>回答过程实时可见，可以随时中断，已经写出的内容不丢</li>
-            <li>每次问答用了多少资源、花了多长时间都有记录</li>
-          </ul>
-        </div>
-        <figure class="shot">
-          <img src="assets/shots/05-agent-gate.png" alt="思考过程与工单确认界面" loading="lazy" width="1600" height="1000">
-          <div class="ph"><b>05</b><span>思考过程与工单确认界面</span><code>assets/shots/05-agent-gate.png</code></div>
-        </figure>
-      </article>
-
-      <article class="feat">
-        <div class="feat-text">
-          <h3><span class="idx">F6</span>AI 能开单，但只能开单</h3>
-          <p>
-            让 AI 直接操作生产系统风险很大——它可能改错数据，也可能越权。所以只交给它四件明确的事：
-            查设备、查备件、写工单、受理工单，别的操作在系统里根本不存在。
-            写进去的工单先是「待确认」，人工确认后才正式生效。
-          </p>
-          <ul class="facts">
-            <li>只开放 4 个固定动作，没有「随便改」的入口</li>
-            <li>工单先存待确认状态，人工确认后才正式受理</li>
-            <li>对方的系统偶尔卡顿报错时，会自动重试或降级，不打断对话</li>
-          </ul>
-        </div>
-        <figure class="shot">
-          <img src="assets/shots/06-erp.png" alt="维修工单与设备台账" loading="lazy" width="1600" height="1000">
-          <div class="ph"><b>06</b><span>维修工单与设备台账</span><code>assets/shots/06-erp.png</code></div>
-        </figure>
-      </article>
-
-      <article class="feat">
-        <div class="feat-text">
-          <h3><span class="idx">F7</span>审批走公司现有的钉钉</h3>
-          <p>
-            公司本来就用钉钉审批，这套系统不去另建一套：用钉钉扫码登录，审批单直接发到钉钉，
-            审批人由规则自动指定（提交人不能自己挑人）。人在钉钉点了同意，工单就自动受理，
-            不用再去另一个系统录一遍。
-          </p>
-          <ul class="facts">
-            <li>现场照片和材料直接附在钉钉审批单上</li>
-            <li>提交后不用盯着，审批通过自动办理；人只点一次「同意」</li>
-            <li>钉钉临时用不了时退回网页确认，不耽误工单</li>
-          </ul>
-        </div>
-        <figure class="shot">
-          <img src="assets/shots/07-dingtalk.png" alt="钉钉上的审批单" loading="lazy" width="1600" height="1000">
-          <div class="ph"><b>07</b><span>钉钉上的审批单</span><code>assets/shots/07-dingtalk.png</code></div>
-        </figure>
-      </article>
-
-      <article class="feat">
-        <div class="feat-text">
-          <h3><span class="idx">F8</span>功能像插件，按需装上</h3>
-          <p>
-            很多 AI 系统一加功能就变慢变贵：每加一项，AI 每次回答都要多看一遍说明书。
-            这里反过来——平时只带 3 个基础能力，需要哪项功能才临时装上，不用就卸下。
-          </p>
-          <ul class="facts">
-            <li>平时只加载 3 个基础能力，加功能不会拖慢每次回答</li>
-            <li>功能写在文件里，改完立即生效，不用停机更新</li>
-            <li>某个功能文件坏掉只影响它自己，不会拖垮整机</li>
-          </ul>
-        </div>
-        <figure class="shot">
-          <img src="assets/shots/08-skills.png" alt="功能与插件的管理界面" loading="lazy" width="1600" height="1000">
-          <div class="ph"><b>08</b><span>功能与插件的管理界面</span><code>assets/shots/08-skills.png</code></div>
-        </figure>
-      </article>
-
-      <article class="feat">
-        <div class="feat-text">
-          <h3><span class="idx">F9</span>资料、权限、参数自己就能改</h3>
-          <p>
-            不用找开发改代码：文档传上去自动读入，读得不对可以重来，某一条内容可以直接改；
-            谁能看哪份资料、能做什么操作，按人逐项分配，改动有记录；
-            换 AI 模型、调整查找方式，都在后台点选即可。
-          </p>
-          <ul class="facts">
-            <li>支持 Word、PDF 等常见文档格式，上传后自动读入</li>
-            <li>权限逐项分配（能看什么、能做什么），授权操作留痕</li>
-            <li>换模型、调参数在后台点选，不改代码、不停机</li>
-          </ul>
-        </div>
-        <figure class="shot">
-          <img src="assets/shots/09-admin.png" alt="资料管理与权限分配界面" loading="lazy" width="1600" height="1000">
-          <div class="ph"><b>09</b><span>资料管理与权限分配界面</span><code>assets/shots/09-admin.png</code></div>
-        </figure>
-      </article>
+      <h3 class="cat">四、管理后台</h3>
+      <ul class="flist">
+        <li>
+          <b>资料维护</b>
+          <span>Word、PDF 等常见格式上传后自动读入；读得不对可以重来，单条内容可以直接改。</span>
+        </li>
+        <li>
+          <b>权限分配</b>
+          <span>按人逐项分配「能看什么、能做什么」，谁能进后台也有开关，授权和撤销都留记录。</span>
+        </li>
+        <li>
+          <b>配置即改</b>
+          <span>换 AI 模型、调整查找方式在后台点选即可，不改代码、不停机。</span>
+        </li>
+        <li>
+          <b>自测台</b>
+          <span>自测题可以增删改，随时跑一轮成绩，并和历史成绩对比，看这次改动是变好还是变差。</span>
+        </li>
+      </ul>
     </div>
   </section>
 
